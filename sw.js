@@ -48,7 +48,7 @@ self.addEventListener('notificationclick', function(event) {
     archiveEmail();
   } else {
     // User selected (e.g., clicked in) the main body of notification.
-    clients.openWindow('/inbox');
+    archiveEmail();
   }
 });
 
