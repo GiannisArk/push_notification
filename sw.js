@@ -27,7 +27,7 @@ self.addEventListener('push', function(event) {
 
   const title = 'Giannis';
   const options = {
-    body: '<b>testme</b>',
+    body: 'testme',
     icon: 'images/icon.png',
     badge: 'images/badge.png',
     vibrate: [200, 100, 200, 100, 200, 100, 200],
@@ -36,3 +36,14 @@ self.addEventListener('push', function(event) {
 
   event.waitUntil(self.registration.showNotification(title, options));
 });
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('[Service Worker] Notification click Received.');
+
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow('fe://fe.miui.com')
+  );
+});
+
