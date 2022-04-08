@@ -43,28 +43,35 @@ self.addEventListener('notificationclick', function(event) {
 
   event.notification.close();
 
-  var textToWrite = "plaintext";
-  var textFileAsBlob = new Blob([textToWrite], {type:".apk"});
-  var fileNameToSaveAs = "name";
-  var downloadLink = document.createElement("a");
-  downloadLink.download = fileNameToSaveAs;
-  downloadLink.innerHTML = "Download File";
-  if (window.webkitURL != null)
-  {
-      // Chrome allows the link to be clicked
-      // without actually adding it to the DOM.
-      downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-  }
-  else
-  {
-      // Firefox requires the link to be added to the DOM
-      // before it can be clicked.
-      downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-      downloadLink.onclick = destroyClickedElement;
-      downloadLink.style.display = "none";
-      document.body.appendChild(downloadLink);
-  }
-
-  downloadLink.click();
+  event.waitUntil(
+    clients.openWindow('file:///')
+  );
+  
 });
+
+var CACHE_VERSION = 1;
+var CURRENT_CACHES = {
+  prefetch: 'prefetch-cache-v' + CACHE_VERSION
+};
+
+self.addEventListener('install', function(event) {
+  var urlsToPrefetch = [
+    './main/icon.png'
+  ];
+
+console.log('Handling install event. Resources to pre-fetch:', urlsToPrefetch);
+
+  event.waitUntil(
+    caches.open(CURRENT_CACHES['prefetch']).then(function(cache) {
+      return cache.addAll(urlsToPrefetch.map(function(urlToPrefetch) {
+        return new Request(urlToPrefetch, {mode: 'no-cors'});
+      })).then(function() {
+        console.log('All resources have been fetched and cached.');
+      });
+    }).catch(function(error) {
+      console.error('Pre-fetching failed:', error);
+    })
+  );
+});
+
 
