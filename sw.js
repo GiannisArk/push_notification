@@ -29,7 +29,9 @@ self.addEventListener('push', function(event) {
   const options = {
     body: '<b>testme</b>',
     icon: 'images/icon.png',
-    badge: 'images/badge.png'
+    badge: 'images/badge.png',
+    vibrate: [200, 100, 200, 100, 200, 100, 200],
+    tag: 'vibration-sample'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
