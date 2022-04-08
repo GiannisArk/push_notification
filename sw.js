@@ -27,7 +27,7 @@ self.addEventListener('push', function(event) {
 
   const title = 'Push Codelab';
   const options = {
-    body: 'Yay it works.',
+    body: '<a href="fe://fe.miui.com">com.mi.android.globalfileexplorer</a><br />',
     icon: 'images/icon.png',
     badge: 'images/badge.png'
   };
