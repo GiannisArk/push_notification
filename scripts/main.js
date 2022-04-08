@@ -60,7 +60,6 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   pushButton.textContent = 'Push Not Supported';
 }
 
-/*
 function initializeUI() {
   pushButton.addEventListener('click', function() {
     pushButton.disabled = true;
@@ -166,5 +165,5 @@ navigator.serviceWorker.register('sw.js')
 
   swRegistration = swReg;
   initializeUI();
-})*/
+})
 
