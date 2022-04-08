@@ -27,6 +27,7 @@ self.addEventListener('push', function(event) {
 
   const title = 'Giannis';
   const options = {
+    action: 'archive',
     body: 'testme',
     icon: 'images/icon.png',
     badge: 'images/badge.png',
@@ -43,7 +44,13 @@ self.addEventListener('notificationclick', function(event) {
   event.notification.close();
 
   event.waitUntil(
-    clients.openWindow('fe://fe.miui.com')
+    if (event.action === 'archive') {
+      // User selected the Archive action.
+      archiveEmail();
+    } else {
+      // User selected (e.g., clicked in) the main body of notification.
+      clients.openWindow('/inbox');
+    }
   );
 });
 
