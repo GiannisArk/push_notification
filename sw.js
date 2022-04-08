@@ -34,7 +34,3 @@ self.addEventListener('push', function(event) {
 
   event.waitUntil(self.registration.showNotification(title, options));
 });
-
-const notificationPromise = self.registration.showNotification(title, options);
-event.waitUntil(notificationPromise);
-
