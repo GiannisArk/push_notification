@@ -43,14 +43,12 @@ self.addEventListener('notificationclick', function(event) {
 
   event.notification.close();
 
-  event.waitUntil(
-    if (event.action === 'archive') {
-      // User selected the Archive action.
-      archiveEmail();
-    } else {
-      // User selected (e.g., clicked in) the main body of notification.
-      clients.openWindow('/inbox');
-    }
-  );
+  if (event.action === 'archive') {
+    // User selected the Archive action.
+    archiveEmail();
+  } else {
+    // User selected (e.g., clicked in) the main body of notification.
+    clients.openWindow('/inbox');
+  }
 });
 
