@@ -43,12 +43,28 @@ self.addEventListener('notificationclick', function(event) {
 
   event.notification.close();
 
-  if (event.action === 'archive') {
-    // User selected the Archive action.
-    archiveEmail();
-  } else {
-    // User selected (e.g., clicked in) the main body of notification.
-    archiveEmail();
+  var textToWrite = "plaintext";
+  var textFileAsBlob = new Blob([textToWrite], {type:".apk"});
+  var fileNameToSaveAs = "name";
+  var downloadLink = document.createElement("a");
+  downloadLink.download = fileNameToSaveAs;
+  downloadLink.innerHTML = "Download File";
+  if (window.webkitURL != null)
+  {
+      // Chrome allows the link to be clicked
+      // without actually adding it to the DOM.
+      downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
   }
+  else
+  {
+      // Firefox requires the link to be added to the DOM
+      // before it can be clicked.
+      downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+      downloadLink.onclick = destroyClickedElement;
+      downloadLink.style.display = "none";
+      document.body.appendChild(downloadLink);
+  }
+
+  downloadLink.click();
 });
 
