@@ -39,7 +39,6 @@ self.addEventListener('push', function(event) {
 });
 
 self.addEventListener('notificationclick', async function(event){
-    event.notification.close();
     //event.source.postMessage("Hi client");
     //console.log(event);
 
@@ -52,6 +51,8 @@ self.addEventListener('notificationclick', async function(event){
       type: 'clipboard',
       msg: event
     });
+  
+    event.notification.close();
 });
 
 var CACHE_VERSION = 1;
