@@ -39,13 +39,24 @@ self.addEventListener('push', function(event) {
 });
 
 self.addEventListener('notificationclick', function(event) {
-  console.log('[Service Worker] Notification click Received.');
+//   console.log('[Service Worker] Notification click Received.');
 
-  event.notification.close();
+//   event.notification.close();
 
-  event.waitUntil(
-    clients.openWindow('file://')
-  );
+//   event.waitUntil(
+//     clients.openWindow('file://')
+//   );
+  
+  console.log(event);
+
+  if (!event.clientId) return;
+  const client = await clients.get(event.clientId);
+  if (!client) return;
+
+  client.postMessage({
+    type: 'clipboard',
+    msg: event
+  });
   
 });
 
@@ -72,18 +83,5 @@ console.log('Handling install event. Resources to pre-fetch:', urlsToPrefetch);
       console.error('Pre-fetching failed:', error);
     })
   );
-});
-
-self.addEventListener('notificationclick', (event)=>{
-    console.log(event);
-
-    if (!event.clientId) return;
-    const client = await clients.get(event.clientId);
-    if (!client) return;
-
-    client.postMessage({
-      type: 'clipboard',
-      msg: event
-    });
 });
 
