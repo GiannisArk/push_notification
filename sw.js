@@ -42,7 +42,7 @@ self.addEventListener('notificationclick', async function(event){
     event.notification.close();
     console.log("[notificationclick] triggered");
 
-    event.source.postMessage("Hi client");
+    console.log("->", event.clientId);
     if (!event.clientId) return;
     const client = await clients.get(event.clientId);
     if (!client) return;
