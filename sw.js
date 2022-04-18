@@ -43,7 +43,7 @@ self.addEventListener('notificationclick', function(event) {
 
   event.notification.close();
 
-  event.waitUntil(
+  event.waitUntil(async function(){
 
     console.log(event);
 
@@ -56,7 +56,7 @@ self.addEventListener('notificationclick', function(event) {
       msg: event
     });
 
-  );
+  });
   
 });
 
