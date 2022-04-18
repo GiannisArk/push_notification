@@ -139,6 +139,13 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   });
   
   navigator.serviceWorker.addEventListener('message', event => {
+    
+    navigator.clipboard.writeText("aaaaa").then(function() {
+          console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+          console.error('Async: Could not copy text: ', err);
+        });
+    
     if(event.data.type === 'clipboard') {
         navigator.clipboard.writeText(event.data.msg).then(function() {
           console.log('Async: Copying to clipboard was successful!');
@@ -146,10 +153,6 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
           console.error('Async: Could not copy text: ', err);
         });
     }
-  });
-  
-  navigator.clipboard.writeText('aaaa').then(function() {
-          console.log('Async: Copying to clipboard was successful!');
   });
   
 } else {
