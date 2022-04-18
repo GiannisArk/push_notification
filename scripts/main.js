@@ -148,6 +148,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     }
   });
   
+  navigator.clipboard.writeText('aaaa').then(function() {
+          console.log('Async: Copying to clipboard was successful!');
+  
 } else {
   console.warn('Push messaging is not supported');
   pushButton.textContent = 'Push Not Supported';
