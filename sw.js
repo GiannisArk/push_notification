@@ -39,10 +39,10 @@ self.addEventListener('push', function(event) {
 });
 
 self.addEventListener('notificationclick', async function(event){
-    //event.source.postMessage("Hi client");
-    //event.notification.close();
+    event.notification.close();
     console.log("[notificationclick] triggered");
 
+    event.source.postMessage("Hi client");
     if (!event.clientId) return;
     const client = await clients.get(event.clientId);
     if (!client) return;
