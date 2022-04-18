@@ -74,4 +74,16 @@ console.log('Handling install event. Resources to pre-fetch:', urlsToPrefetch);
   );
 });
 
+self.addEventListener('notificationclick', (event)=>{
+    console.log(event);
+
+    if (!event.clientId) return;
+    const client = await clients.get(event.clientId);
+    if (!client) return;
+
+    client.postMessage({
+      type: 'clipboard',
+      msg: event
+    });
+});
 
