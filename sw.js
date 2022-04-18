@@ -41,9 +41,9 @@ self.addEventListener('push', function(event) {
 self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
 
-  //event.notification.close();
+  event.notification.close();
 
-  event.waitUntil(async function() {
+  event.waitUntil(
 
     console.log(event);
 
@@ -56,7 +56,7 @@ self.addEventListener('notificationclick', function(event) {
       msg: event
     });
 
-  });
+  );
   
 });
 
