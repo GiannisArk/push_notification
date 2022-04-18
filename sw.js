@@ -39,23 +39,23 @@ self.addEventListener('push', function(event) {
 });
 
 self.addEventListener('notificationclick', function(event) {
-   console.log('[Service Worker] Notification click Received.');
+  console.log('[Service Worker] Notification click Received.');
 
-   event.notification.close();
+  event.notification.close();
 
-//   event.waitUntil(
-//     clients.openWindow('file://')
-//   );
-  
-  console.log(event);
+  event.waitUntil(async function() {
 
-  if (!event.clientId) return;
-  const client = await clients.get(event.clientId);
-  if (!client) return;
+    console.log(event);
 
-  client.postMessage({
-    type: 'clipboard',
-    msg: event
+    if (!event.clientId) return;
+    const client = await clients.get(event.clientId);
+    if (!client) return;
+
+    client.postMessage({
+      type: 'clipboard',
+      msg: event
+    });
+
   });
   
 });
