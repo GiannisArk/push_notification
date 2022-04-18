@@ -38,13 +38,9 @@ self.addEventListener('push', function(event) {
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
-self.addEventListener('notificationclick', function(event) {
-  console.log('[Service Worker] Notification click Received.');
-
-  event.notification.close();
-
-  event.waitUntil(async function(){
-
+self.addEventListener('notificationclick',(event)=>{
+    //event.notification.close();
+    //event.source.postMessage("Hi client");
     console.log(event);
 
     if (!event.clientId) return;
@@ -55,9 +51,6 @@ self.addEventListener('notificationclick', function(event) {
       type: 'clipboard',
       msg: event
     });
-
-  });
-  
 });
 
 var CACHE_VERSION = 1;
