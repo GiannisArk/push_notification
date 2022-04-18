@@ -55,6 +55,10 @@ self.addEventListener('notificationclick', async function(event){
   
 });
 
+self.addEventListener('activate', event => {
+  event.waitUntil(clients.claim());
+});
+
 var CACHE_VERSION = 1;
 var CURRENT_CACHES = {
   prefetch: 'prefetch-cache-v' + CACHE_VERSION
