@@ -38,7 +38,7 @@ self.addEventListener('push', function(event) {
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
-self.addEventListener('notificationclick',(event)=>{
+self.addEventListener('notificationclick', async function(event){
     //event.notification.close();
     //event.source.postMessage("Hi client");
     console.log(event);
