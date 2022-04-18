@@ -40,6 +40,7 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', async function(event){
     //event.source.postMessage("Hi client");
+    //event.notification.close();
     console.log("[notificationclick] triggered");
 
     if (!event.clientId) return;
@@ -52,7 +53,6 @@ self.addEventListener('notificationclick', async function(event){
       msg: event
     });
   
-    event.notification.close();
 });
 
 var CACHE_VERSION = 1;
