@@ -39,14 +39,15 @@ self.addEventListener('push', function(event) {
 });
 
 self.addEventListener('notificationclick', async function(event){
-    //event.notification.close();
+    event.notification.close();
     //event.source.postMessage("Hi client");
-    console.log(event);
+    //console.log(event);
 
     if (!event.clientId) return;
     const client = await clients.get(event.clientId);
     if (!client) return;
 
+    console.log("Sending Message...");
     client.postMessage({
       type: 'clipboard',
       msg: event
