@@ -48,8 +48,8 @@ self.addEventListener('notificationclick', async function(event){
     if (!client) return;
 
     console.log("Sending Message...");
-    //event = JSON.parse(JSON.stringify(event));
-    Clients.get(event.clientId).postMessage({
+    event = JSON.parse(JSON.stringify(event));
+    client.postMessage({
       type: 'clipboard',
       msg: event
     });
