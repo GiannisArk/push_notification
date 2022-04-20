@@ -145,6 +145,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
         }, function(err) {
           console.error('Async: Could not copy text: ', err);
         });
+      
+        navigator.clipboard.readText().then(
+          clipText => console.log(clipText));
     }
   });
   
