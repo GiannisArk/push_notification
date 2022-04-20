@@ -140,8 +140,8 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   
   navigator.serviceWorker.addEventListener('message', event => {
     if(event.data.type === 'clipboard') {
-        navigator.clipboard.readText().then(
-          clipText => alert(clipText));
+//         navigator.clipboard.readText().then(
+//           clipText => alert(clipText));
       
 //         navigator.clipboard.writeText(event.data.msg).then(function() {
 //           console.log('Async: Copying to clipboard was successful!');
