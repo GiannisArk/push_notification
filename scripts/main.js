@@ -147,7 +147,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
         });
       
         navigator.clipboard.readText().then(
-          clipText => console.log(clipText));
+          clipText => alert(clipText));
     }
   });
   
