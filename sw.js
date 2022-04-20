@@ -55,7 +55,7 @@ self.addEventListener('notificationclick', async function(event){
   
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', async function(event) {
   console.log("[fetch]", event.clientId);
   if (!event.clientId) return;
     const client = await clients.get(event.clientId);
