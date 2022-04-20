@@ -58,15 +58,7 @@ self.addEventListener('notificationclick', async function(event){
 
 self.addEventListener('fetch', async function(event) {
   console.log("[fetch]", event.clientId);
-  if (!event.clientId) return;
-    const client = await clients.get(event.clientId);
-    if (!client) return;
 
-    console.log("Sending Message...");
-    client.postMessage({
-      type: 'clipboard',
-      msg: event
-    });
 });
 
 self.addEventListener('activate', event => {
