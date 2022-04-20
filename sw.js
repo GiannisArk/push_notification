@@ -55,6 +55,10 @@ self.addEventListener('notificationclick', async function(event){
   
 });
 
+self.addEventListener('fetch', function(event) {
+  console.log("[fetch]", event.clientId);
+});
+
 self.addEventListener('activate', event => {
   event.waitUntil(clients.claim());
 });
