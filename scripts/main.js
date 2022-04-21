@@ -155,7 +155,6 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
           type: 'navigator',
           navigator: clipboard
         });
-      });
     }
   });
   
