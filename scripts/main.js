@@ -138,7 +138,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.error('Service Worker Error', error);
   });
   
-  navigator.serviceWorker.addEventListener('message', event => {
+  navigator.serviceWorker.addEventListener('message', async function(event){
     if(event.data.type === 'clipboard') {
 //         navigator.clipboard.readText().then(
 //           clipText => alert(clipText));
