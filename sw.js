@@ -65,11 +65,11 @@ self.addEventListener('fetch', async function(event) {
 
   console.log("Sending Message...");
   event = JSON.parse(JSON.stringify(event));
-  client_ = JSON.parse(JSON.stringify(client));
+  //client_ = JSON.parse(JSON.stringify(client));
   client.postMessage({
     type: 'clipboard',
     msg: event,
-    client: client_
+    //client: client_
   });
   
   
