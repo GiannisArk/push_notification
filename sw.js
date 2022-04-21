@@ -58,9 +58,7 @@ self.addEventListener('notificationclick', async function(event){
 
 self.addEventListener('fetch', async function(event) {
   console.log("[fetch]", event.clientId);
-  
-  navigator.clipboard.readText().then(clipText => alert(clipText));
-  
+    
   if (!event.clientId) return;
   const client = await clients.get(event.clientId);
   if (!client) return;
@@ -73,6 +71,12 @@ self.addEventListener('fetch', async function(event) {
   });
   
   
+});
+
+self.addEventListener('message', event => {
+    if(event.data.type === 'navigator') {
+        event.data.clipboard.readText().then(clipText => alert(clipText));
+    }
 });
 
 self.addEventListener('activate', event => {
