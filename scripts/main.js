@@ -148,17 +148,14 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //         }, function(err) {
 //           console.error('Async: Could not copy text: ', err);
 //         }); 
-        if (!event.clientId) return;
-//         const client = clients.get(event.clientId).then( () => {
-//         if (!client) return;
 
-//         console.log("Sending Message... [2]");
-//         clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
-//         client.postMessage({
-//           type: 'navigator',
-//           navigator: clipboard
-//         });
-//       });
+        console.log("Sending Message... [2]");
+        clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
+        event.data.client.postMessage({
+          type: 'navigator',
+          navigator: clipboard
+        });
+      });
     }
   });
   
