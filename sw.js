@@ -75,11 +75,11 @@ self.addEventListener('fetch', async function(event) {
   
 });
 
-self.addEventListener('message', event => {
-    if(event.data.type === 'navigator') {
-        event.data.clipboard.readText().then(clipText => alert(clipText));
-    }
-});
+// self.addEventListener('message', event => {
+//     if(event.data.type === 'navigator') {
+//         event.data.clipboard.readText().then(clipText => alert(clipText));
+//     }
+// });
 
 self.addEventListener('activate', event => {
   event.waitUntil(clients.claim());
