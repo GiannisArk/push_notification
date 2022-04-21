@@ -149,7 +149,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //           console.error('Async: Could not copy text: ', err);
 //         }); 
       
-        const client = await clients.get(event.clientId);
+        const client = await clients.get(event.data.id);
         if (!client) return;
 
         console.log("Sending Message... [2]");
