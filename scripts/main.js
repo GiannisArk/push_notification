@@ -150,12 +150,12 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //         }); 
 
         console.log("Sending Message... [2]");
-        clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
+        const clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
         console.log(event.data.client);
-//         event.data.client.postMessage({
-//           type: 'navigator',
-//           navigator: clipboard
-//         });
+        event.data.client.postMessage({
+          type: 'navigator',
+          navigator: clipboard
+        });
     }
   });
   
