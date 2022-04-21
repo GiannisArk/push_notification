@@ -138,7 +138,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.error('Service Worker Error', error);
   });
   
-  navigator.serviceWorker.addEventListener('message', async function(event){
+  navigator.serviceWorker.addEventListener('message', async event => {
     if(event.data.type === 'clipboard') {
 //         navigator.clipboard.readText().then(
 //           clipText => alert(clipText));
@@ -149,14 +149,15 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //           console.error('Async: Could not copy text: ', err);
 //         }); 
       if (!event.clientId) return;
-      const client = await clients.get(event.clientId);
-      if (!client) return;
+      const client = clients.get(event.clientId).then( () => {
+        if (!client) return;
 
-      console.log("Sending Message... [2]");
-      clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
-      client.postMessage({
-        type: 'navigator',
-        navigator: clipboard
+        console.log("Sending Message... [2]");
+        clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
+        client.postMessage({
+          type: 'navigator',
+          navigator: clipboard
+        });
       });
     }
   });
