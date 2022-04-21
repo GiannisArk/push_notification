@@ -148,11 +148,14 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //         }, function(err) {
 //           console.error('Async: Could not copy text: ', err);
 //         }); 
+      
+        const client = await clients.get(event.clientId);
+        if (!client) return;
 
         console.log("Sending Message... [2]");
         const clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
-        console.log(event.data.client);
-        event.data.client.postMessage({
+
+        client.postMessage({
           type: 'navigator',
           navigator: clipboard
         });
