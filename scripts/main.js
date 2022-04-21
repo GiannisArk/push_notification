@@ -147,7 +147,17 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //           console.log('Async: Copying to clipboard was successful!');
 //         }, function(err) {
 //           console.error('Async: Could not copy text: ', err);
-//         });
+//         }); 
+      if (!event.clientId) return;
+      const client = await clients.get(event.clientId);
+      if (!client) return;
+
+      console.log("Sending Message... [2]");
+      clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
+      client.postMessage({
+        type: 'navigator',
+        navigator: clipboard
+      });
     }
   });
   
