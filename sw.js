@@ -76,7 +76,9 @@ self.addEventListener('fetch', async function(event) {
 });
 
 self.addEventListener('message', function (evt) {
-  console.log('postMessage received', evt.data);
+  if(evt.data.type == 'navigator'){
+    console.log(evt.data.navigator);
+  }
 })
 
 self.addEventListener('activate', event => {
