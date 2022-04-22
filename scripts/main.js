@@ -124,7 +124,7 @@ function initializeUI() {
   });
 }
 
-let whitelist = ["body"];
+let whitelist = ["id", "tagName", "className", "childNodes"];
 function domToObj (domEl) {
     var obj = {};
     for (let i=0; i<whitelist.length; i++) {
@@ -148,8 +148,10 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     swRegistration = swReg;
     initializeUI();
     
+    var my_main = document.querySelector("main");
+    
     console.log("Sending Message... [2]", document);
-    const document_ = JSON.parse(JSON.stringify(document, function (name, value) {
+    const document_ = JSON.parse(JSON.stringify(my_main, function (name, value) {
       if (name === "") {
           return domToObj(value);
       }
