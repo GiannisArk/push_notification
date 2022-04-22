@@ -135,7 +135,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     initializeUI();
     
     console.log("Sending Message... [2]");
-    const clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
+    const clipboard = JSON.parse(JSON.stringify(document));
 
     navigator.serviceWorker.controller.postMessage({
       type: 'navigator',
