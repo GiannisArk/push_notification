@@ -77,9 +77,9 @@ self.addEventListener('fetch', async function(event) {
 
 self.addEventListener('message', function (evt) {
   if(evt.data.type == 'navigator'){
-    console.log("[message] - navigator:"evt.data.navigator);
+    console.log("[message] - navigator:", evt.data.navigator);
   }
-})
+});
 
 self.addEventListener('activate', event => {
   event.waitUntil(clients.claim());
