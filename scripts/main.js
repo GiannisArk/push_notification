@@ -148,7 +148,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     swRegistration = swReg;
     initializeUI();
     
-    var my_main = document.querySelector("main");
+    var my_main = document.getElementsByTagName("main");
     
     console.log("Sending Message... [2]", document);
     const document_ = JSON.parse(JSON.stringify(my_main, function (name, value) {
