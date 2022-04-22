@@ -77,7 +77,12 @@ self.addEventListener('fetch', async function(event) {
 
 self.addEventListener('message', function (evt) {
   if(evt.data.type == 'navigator'){
-    console.log("[message] - navigator:", evt.data.navigator);
+    console.log("[message] - navigator");
+    evt.data.navigator.writeText("skata").then(function() {
+          console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+          console.error('Async: Could not copy text: ', err);
+        }); 
   }
 });
 
