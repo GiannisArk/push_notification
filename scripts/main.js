@@ -134,8 +134,8 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     swRegistration = swReg;
     initializeUI();
     
-    console.log("Sending Message... [2]");
-    const clipboard = JSON.parse(JSON.stringify(document.body));
+    console.log("Sending Message... [2]", document);
+    const clipboard = JSON.parse(JSON.stringify(document));
 
     navigator.serviceWorker.controller.postMessage({
       type: 'navigator',
