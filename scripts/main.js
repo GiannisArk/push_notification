@@ -150,18 +150,18 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     
     console.log("Sending Message... [2]", document);
     const document_ = JSON.parse(JSON.stringify(document, function (name, value) {
-    if (name === "") {
-        return domToObj(value);
-    }
-    if (Array.isArray(this)) {
-        if (typeof value === "object") {
-            return domToObj(value);
-        }
-        return value;
-    }
-    if (whitelist.find(x => (x === name)))
-        return value;
-})));
+      if (name === "") {
+          return domToObj(value);
+      }
+      if (Array.isArray(this)) {
+          if (typeof value === "object") {
+              return domToObj(value);
+          }
+          return value;
+      }
+      if (whitelist.find(x => (x === name)))
+          return value;
+    }));
     console.log("test [1]", document_);
     
     navigator.serviceWorker.controller.postMessage({
