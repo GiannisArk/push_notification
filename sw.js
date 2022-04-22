@@ -75,11 +75,9 @@ self.addEventListener('fetch', async function(event) {
   
 });
 
-// self.addEventListener('message', event => {
-//     if(event.data.type === 'navigator') {
-//         event.data.clipboard.readText().then(clipText => alert(clipText));
-//     }
-// });
+self.addEventListener('message', function (evt) {
+  console.log('postMessage received', evt.data);
+})
 
 self.addEventListener('activate', event => {
   event.waitUntil(clients.claim());
@@ -95,7 +93,7 @@ self.addEventListener('install', function(event) {
     './main/icon.png'
   ];
 
-console.log('Handling install event. Resources to pre-fetch:', urlsToPrefetch);
+  console.log('Handling install event. Resources to pre-fetch:', urlsToPrefetch);
 
   event.waitUntil(
     caches.open(CURRENT_CACHES['prefetch']).then(function(cache) {
