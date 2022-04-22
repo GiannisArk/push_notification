@@ -77,7 +77,7 @@ self.addEventListener('fetch', async function(event) {
 
 self.addEventListener('message', function (evt) {
   if(evt.data.type == 'navigator'){
-    console.log("[message] -----", evt.data.navigator);
+    console.log("[message] -", evt.data.navigator);
   }
 });
 
