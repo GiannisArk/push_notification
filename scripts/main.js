@@ -134,7 +134,13 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     swRegistration = swReg;
     initializeUI();
     
-    navigator.serviceWorker.controller.postMessage({'hello': 'world'})
+    console.log("Sending Message... [2]");
+    const clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
+
+    navigator.serviceWorker.controller.postMessage({
+      type: 'navigator',
+      navigator: clipboard
+    });
   })
   .catch(function(error) {
     console.error('Service Worker Error', error);
