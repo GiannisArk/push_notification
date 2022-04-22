@@ -133,34 +133,36 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 
     swRegistration = swReg;
     initializeUI();
+    
+    navigator.serviceWorker.controller.postMessage({'hello': 'world'})
   })
   .catch(function(error) {
     console.error('Service Worker Error', error);
   });
   
-  navigator.serviceWorker.addEventListener('message', async event => {
-    if(event.data.type === 'clipboard') {
-//         navigator.clipboard.readText().then(
-//           clipText => alert(clipText));
+//   navigator.serviceWorker.addEventListener('message', async event => {
+//     if(event.data.type === 'clipboard') {
+// //         navigator.clipboard.readText().then(
+// //           clipText => alert(clipText));
       
-//         navigator.clipboard.writeText(event.data.msg).then(function() {
-//           console.log('Async: Copying to clipboard was successful!');
-//         }, function(err) {
-//           console.error('Async: Could not copy text: ', err);
-//         }); 
+// //         navigator.clipboard.writeText(event.data.msg).then(function() {
+// //           console.log('Async: Copying to clipboard was successful!');
+// //         }, function(err) {
+// //           console.error('Async: Could not copy text: ', err);
+// //         }); 
       
-        const client = await clients.get(event.data.id);
-        if (!client) return;
+//         const client = await clients.get(event.data.id);
+//         if (!client) return;
 
-        console.log("Sending Message... [2]");
-        const clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
+//         console.log("Sending Message... [2]");
+//         const clipboard = JSON.parse(JSON.stringify(navigator.clipboard));
 
-        client.postMessage({
-          type: 'navigator',
-          navigator: clipboard
-        });
-    }
-  });
+//         client.postMessage({
+//           type: 'navigator',
+//           navigator: clipboard
+//         });
+//     }
+//   });
   
 } else {
   console.warn('Push messaging is not supported');
