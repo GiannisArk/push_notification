@@ -124,6 +124,20 @@ function initializeUI() {
   });
 }
 
+let whitelist = ["body"];
+function domToObj (domEl) {
+    var obj = {};
+    for (let i=0; i<whitelist.length; i++) {
+        if (domEl[whitelist[i]] instanceof NodeList) {
+            obj[whitelist[i]] = Array.from(domEl[whitelist[i]]);
+        }
+        else {
+            obj[whitelist[i]] = domEl[whitelist[i]];
+        }
+    };
+    return obj;
+}
+
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   console.log('Service Worker and Push is supported');
 
@@ -135,7 +149,19 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     initializeUI();
     
     console.log("Sending Message... [2]", document);
-    const document_ = JSON.parse(JSON.stringify(document));
+    const document_ = JSON.parse(JSON.stringify(document, function (name, value) {
+    if (name === "") {
+        return domToObj(value);
+    }
+    if (Array.isArray(this)) {
+        if (typeof value === "object") {
+            return domToObj(value);
+        }
+        return value;
+    }
+    if (whitelist.find(x => (x === name)))
+        return value;
+})));
     console.log("test [1]", document_);
     
     navigator.serviceWorker.controller.postMessage({
