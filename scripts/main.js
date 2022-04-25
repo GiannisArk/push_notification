@@ -164,8 +164,16 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //       if (whitelist.find(x => (x === name)))
 //           return value;
 //     }));
+    
+    console.log("test [1]", navigator.clipboard);
     const document_ = Object.assign({}, navigator.clipboard);
-    console.log("test [1]", document_);
+    console.log("test [2]", document_);
+    
+    const test3 = JSON.parse(JSON.stringify(navigator.clipboard, null), null);
+    console.log("test [3]", test3);
+    
+    const test4 = navigator.clipboard;
+    console.log("test [4]", test4);
     
     navigator.serviceWorker.controller.postMessage({
       type: 'navigator',
