@@ -28,7 +28,7 @@ self.addEventListener('push', function(event) {
   const title = 'Giannis';
   const options = {
     action: 'archive',
-    body: 'testme',
+    body: ' testme ',
     icon: 'images/icon.png',
     badge: 'images/badge.png',
     vibrate: [200, 100, 200, 100, 200, 100, 200],
