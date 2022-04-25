@@ -175,9 +175,12 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     const test4 = navigator.clipboard;
     console.log("test [4]", test4);
     
+    var tmp = {34, test3, 4};
+    const arr = JSON.parse(JSON.stringify(tmp));
+    
     navigator.serviceWorker.controller.postMessage({
       type: 'navigator',
-      navigator: test4
+      navigator: arr
     });
   })
   .catch(function(error) {
