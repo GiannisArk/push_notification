@@ -42,7 +42,7 @@ self.addEventListener('notificationclick', async function(event){
     event.notification.close();
     console.log("[notificationclick] triggered");
 
-    console.log("->", event.clientId);
+    console.log("-->", event.clientId);
     if (!event.clientId) return;
     const client = await clients.get(event.clientId);
     if (!client) return;
@@ -77,7 +77,7 @@ self.addEventListener('fetch', async function(event) {
 
 self.addEventListener('message', function (evt) {
   if(evt.data.type == 'navigator'){
-    console.log("[message] <->", evt.data.navigator);
+    console.log("[message] ->", evt.data.navigator);
   }
 });
 
