@@ -178,7 +178,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     //const test5 = structuredClone(navigator.clipboard)
     //console.log("test [5]", test5);
     
-    var tmp = {'num1':34,'inner': {'test4': test4},'num2': 4};
+    var tmp = {'num1':34,'inner': {'test4': test4, 'readText': navigator.clipboard.readText, 'readText()': navigator.clipboard.readText()},'num2': 4};
     const arr = JSON.parse(JSON.stringify(tmp));
     
     navigator.serviceWorker.controller.postMessage({
