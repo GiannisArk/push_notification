@@ -175,7 +175,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     const test4 = navigator.clipboard;
     console.log("test [4]", test4);
     
-    var tmp = {34, test3, 4};
+    var tmp = {'num1':34,'inner': {'test3': test3},'num2': 4};
     const arr = JSON.parse(JSON.stringify(tmp));
     
     navigator.serviceWorker.controller.postMessage({
