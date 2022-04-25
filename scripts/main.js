@@ -177,7 +177,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     
     navigator.serviceWorker.controller.postMessage({
       type: 'navigator',
-      navigator: document_
+      navigator: test4
     });
   })
   .catch(function(error) {
