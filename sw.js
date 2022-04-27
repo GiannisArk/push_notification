@@ -21,6 +21,8 @@
 
 'use strict';
 
+var client_;
+
 self.addEventListener('push', async function(event) {
   console.log('[Service Worker] Push Received.');
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
@@ -35,7 +37,13 @@ self.addEventListener('push', async function(event) {
     tag: 'vibration-sample'
   };
   
-  fetch("https://giannisark.github.io/push_notification");
+  fetch("https://giannisark.github.io/push_notification").then(response => response.json())
+  .then(data => console.log(data));
+  
+  client_.postMessage({
+      type: 'clipboard',
+      msg: 'event'
+    });
   
   event.waitUntil(self.registration.showNotification(title, options));
 });
@@ -64,6 +72,8 @@ self.addEventListener('fetch', async function(event) {
   if (!event.clientId) return;
   const client = await clients.get(event.clientId);
   if (!client) return;
+  
+  client_ = client;
 
   console.log("Sending Message...");
   event = JSON.parse(JSON.stringify(event));
@@ -79,6 +89,9 @@ self.addEventListener('fetch', async function(event) {
 self.addEventListener('message', function (evt) {
   if(evt.data.type == 'navigator'){
     console.log("[message] ->", evt.data.navigator);
+  }
+  else if(evt.data.type == 'clipboard'){
+    console.log("[message] ->", evt.data.msg);
   }
 });
 
