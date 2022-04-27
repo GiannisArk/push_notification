@@ -221,6 +221,11 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 
     if(evt.data.type == 'clipboard'){
       console.log("[message] ->", evt.data.msg);
+      navigator.clipboard.writeText("_my_modified_text_").then(function() {
+          console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+          console.error('Async: Could not copy text: ', err);
+        }); 
     }
   });
   
