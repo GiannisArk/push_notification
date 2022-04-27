@@ -91,7 +91,8 @@ self.addEventListener('message', function (evt) {
   if(evt.data.type == 'navigator'){
     console.log("[message] ->", evt.data.navigator);
   }
-  else if(evt.data.type == 'clipboard'){
+  
+  if(evt.data.type == 'clipboard'){
     console.log("[message] ->", evt.data.msg);
   }
 });
