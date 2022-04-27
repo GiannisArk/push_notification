@@ -228,7 +228,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
       tag: 'vibration-sample'
     };
     
-    navigator.clipboard.writeText(event.data.msg).then(function() {
+    navigator.clipboard.writeText("aaaaa").then(function() {
           console.log('Async: Copying to clipboard was successful!');
         }, function(err) {
           console.error('Async: Could not copy text: ', err);
