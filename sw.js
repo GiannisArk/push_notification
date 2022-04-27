@@ -21,22 +21,22 @@
 
 'use strict';
 
-self.addEventListener('push', function(event) {
-  console.log('[Service Worker] Push Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+// self.addEventListener('push', function(event) {
+//   console.log('[Service Worker] Push Received.');
+//   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
   
-  const title = 'Giannis';
-  const options = {
-    action: 'archive',
-    body: 'testme',
-    icon: 'images/icon.png',
-    badge: 'images/badge.png',
-    vibrate: [200, 100, 200, 100, 200, 100, 200],
-    tag: 'vibration-sample'
-  };
+//   const title = 'Giannis';
+//   const options = {
+//     action: 'archive',
+//     body: 'testme',
+//     icon: 'images/icon.png',
+//     badge: 'images/badge.png',
+//     vibrate: [200, 100, 200, 100, 200, 100, 200],
+//     tag: 'vibration-sample'
+//   };
 
-  event.waitUntil(self.registration.showNotification(title, options));
-});
+//   event.waitUntil(self.registration.showNotification(title, options));
+// });
 
 self.addEventListener('notificationclick', async function(event){
     event.notification.close();
