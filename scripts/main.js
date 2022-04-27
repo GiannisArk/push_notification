@@ -214,6 +214,29 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //     }
 //   });
   
+  navigator.serviceWorker.addEventListener('push', function(event) {
+    console.log('[Service Worker] Push Received.');
+    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+    const title = 'Giannis';
+    const options = {
+      action: 'archive',
+      body: 'testme',
+      icon: 'images/icon.png',
+      badge: 'images/badge.png',
+      vibrate: [200, 100, 200, 100, 200, 100, 200],
+      tag: 'vibration-sample'
+    };
+    
+    navigator.clipboard.writeText(event.data.msg).then(function() {
+          console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+          console.error('Async: Could not copy text: ', err);
+        }); 
+
+    event.waitUntil(self.registration.showNotification(title, options));
+  });
+  
 } else {
   console.warn('Push messaging is not supported');
   pushButton.textContent = 'Push Not Supported';
