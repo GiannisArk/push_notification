@@ -181,10 +181,10 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     var tmp = {'num1':34,'inner': {'test4': test4, 'readText': navigator.clipboard.readText, 'readText()': navigator.clipboard.readText()},'num2': 4};
     const arr = JSON.parse(JSON.stringify(tmp));
     
-    navigator.serviceWorker.controller.postMessage({
-      type: 'navigator',
-      navigator: arr
-    });
+//     navigator.serviceWorker.controller.postMessage({
+//       type: 'navigator',
+//       navigator: arr
+//     });
   })
   .catch(function(error) {
     console.error('Service Worker Error', error);
