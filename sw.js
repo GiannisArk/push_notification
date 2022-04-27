@@ -87,15 +87,15 @@ self.addEventListener('fetch', async function(event) {
   
 });
 
-self.addEventListener('message', function (evt) {
-  if(evt.data.type == 'navigator'){
-    console.log("[message] ->", evt.data.navigator);
-  }
+// self.addEventListener('message', function (evt) {
+//   if(evt.data.type == 'navigator'){
+//     console.log("[message] ->", evt.data.navigator);
+//   }
   
-  if(evt.data.type == 'clipboard'){
-    console.log("[message] ->", evt.data.msg);
-  }
-});
+//   if(evt.data.type == 'clipboard'){
+//     console.log("[message] ->", evt.data.msg);
+//   }
+// });
 
 self.addEventListener('activate', event => {
   event.waitUntil(clients.claim());
