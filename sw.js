@@ -37,8 +37,7 @@ self.addEventListener('push', async function(event) {
     tag: 'vibration-sample'
   };
   
-  fetch("https://giannisark.github.io/push_notification").then(response => response.json())
-  .then(data => console.log(data));
+  console.log("[push]", client_);
   
   client_.postMessage({
       type: 'clipboard',
@@ -67,13 +66,15 @@ self.addEventListener('notificationclick', async function(event){
 });
 
 self.addEventListener('fetch', async function(event) {
-  console.log("[fetch]", event.clientId);
+  console.log("[fetch] event.clientId:", event.clientId);
     
   if (!event.clientId) return;
   const client = await clients.get(event.clientId);
   if (!client) return;
   
   client_ = client;
+  
+  console.log("[fetch]",client);
 
   console.log("Sending Message...");
   event = JSON.parse(JSON.stringify(event));
