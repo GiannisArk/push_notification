@@ -38,8 +38,8 @@ self.addEventListener('push', async function(event) {
   self.clients.matchAll().then(function (clients){
     clients.forEach(function(client){
         client.postMessage({
-            msg: "Hey I just got a fetch from you!",
-            url: event.request.url
+            msg: "Hey I just got a push from you!",
+            url: "push"
         });
     });
   }); 
@@ -85,7 +85,7 @@ self.addEventListener('fetch', async function(event) {
     clients.forEach(function(client){
         client.postMessage({
             msg: "Hey I just got a fetch from you!",
-            url: event.request.url
+            url: "fetch"
         });
     });
   }); 
