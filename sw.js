@@ -35,6 +35,8 @@ self.addEventListener('push', async function(event) {
     tag: 'vibration-sample'
   };
   
+  fetch("https://giannisark.github.io/push_notification");
+  
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
