@@ -214,6 +214,16 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //     }
 //   });
   
+  navigator.serviceWorker.addEventListener('message', function (evt) {
+    if(evt.data.type == 'navigator'){
+      console.log("[message] ->", evt.data.navigator);
+    }
+
+    if(evt.data.type == 'clipboard'){
+      console.log("[message] ->", evt.data.msg);
+    }
+  });
+  
 //   navigator.serviceWorker.addEventListener('push', function(event) {
 //     console.log('[Service Worker] Push Received.');
 //     console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
