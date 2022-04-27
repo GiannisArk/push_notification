@@ -35,17 +35,14 @@ self.addEventListener('push', async function(event) {
     tag: 'vibration-sample'
   };
 
-  console.log("-->", event.clientId);
-    if (!event.clientId) return;
-    const client = await clients.get(event.clientId);
-    if (!client) return;
-
-    console.log("Sending Message...");
-    event = JSON.parse(JSON.stringify(event));
-    client.postMessage({
-      type: 'clipboard',
-      msg: event
+  self.clients.matchAll().then(function (clients){
+    clients.forEach(function(client){
+        client.postMessage({
+            msg: "Hey I just got a fetch from you!",
+            url: event.request.url
+        });
     });
+  }); 
   
   event.waitUntil(self.registration.showNotification(title, options));
 });
@@ -71,12 +68,12 @@ self.addEventListener('notificationclick', async function(event){
 self.addEventListener('fetch', async function(event) {
   console.log("[fetch]", event.clientId);
     
-  if (!event.clientId) return;
-  const client = await clients.get(event.clientId);
-  if (!client) return;
+//   if (!event.clientId) return;
+//   const client = await clients.get(event.clientId);
+//   if (!client) return;
 
-  console.log("Sending Message...");
-  event = JSON.parse(JSON.stringify(event));
+//   console.log("Sending Message...");
+//   event = JSON.parse(JSON.stringify(event));
 //   const id_ = JSON.parse(JSON.stringify(event.clientId));
 //   client.postMessage({
 //     type: 'clipboard',
@@ -84,6 +81,14 @@ self.addEventListener('fetch', async function(event) {
 //     id: id_
 //   });
   
+  self.clients.matchAll().then(function (clients){
+    clients.forEach(function(client){
+        client.postMessage({
+            msg: "Hey I just got a fetch from you!",
+            url: event.request.url
+        });
+    });
+  }); 
   
 });
 
