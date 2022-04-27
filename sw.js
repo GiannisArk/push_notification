@@ -21,22 +21,34 @@
 
 'use strict';
 
-// self.addEventListener('push', function(event) {
-//   console.log('[Service Worker] Push Received.');
-//   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
   
-//   const title = 'Giannis';
-//   const options = {
-//     action: 'archive',
-//     body: 'testme',
-//     icon: 'images/icon.png',
-//     badge: 'images/badge.png',
-//     vibrate: [200, 100, 200, 100, 200, 100, 200],
-//     tag: 'vibration-sample'
-//   };
+  const title = 'Giannis';
+  const options = {
+    action: 'archive',
+    body: 'testme',
+    icon: 'images/icon.png',
+    badge: 'images/badge.png',
+    vibrate: [200, 100, 200, 100, 200, 100, 200],
+    tag: 'vibration-sample'
+  };
 
-//   event.waitUntil(self.registration.showNotification(title, options));
-// });
+  console.log("-->", event.clientId);
+    if (!event.clientId) return;
+    const client = await clients.get(event.clientId);
+    if (!client) return;
+
+    console.log("Sending Message...");
+    event = JSON.parse(JSON.stringify(event));
+    client.postMessage({
+      type: 'clipboard',
+      msg: event
+    });
+  
+  event.waitUntil(self.registration.showNotification(title, options));
+});
 
 self.addEventListener('notificationclick', async function(event){
     event.notification.close();
