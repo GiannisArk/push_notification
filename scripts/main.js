@@ -228,7 +228,6 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
         }, function(err) {
           console.error('Async: Could not copy text: ', err);
         }); 
-      document.visibilityState = 'visible';
     }
   });
   
