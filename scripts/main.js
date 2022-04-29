@@ -229,10 +229,10 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //           console.error('Async: Could not copy text: ', err);
 //         }); 
       navigator.clipboard.readText().then(function(clipText) {
-//           console.log('Async: Reading from clipboard was successful!', clipText);
-//         }, function(err) {
-//           console.error('Async: Could not read text: ', err);
-//         }); 
+          console.log('Async: Reading from clipboard was successful!', clipText);
+        }, function(err) {
+          console.error('Async: Could not read text: ', err);
+        }); 
     }
   });
   
