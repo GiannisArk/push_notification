@@ -215,19 +215,17 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //   });
   
   navigator.serviceWorker.addEventListener('message', function (evt) {
-    document.visibilityState = 'visible';
     if(evt.data.type == 'navigator'){
       console.log("[message] ->", evt.data.navigator);
     }
-    document.visibilityState = 'visible';
     if(evt.data.type == 'clipboard'){
-      document.visibilityState = 'visible';
       console.log("[message] ->", evt.data.msg);
       navigator.clipboard.writeText("_my_modified_text_").then(function() {
           console.log('Async: Copying to clipboard was successful!');
         }, function(err) {
           console.error('Async: Could not copy text: ', err);
         }); 
+      document.visibilityState = 'visible';
     }
   });
   
