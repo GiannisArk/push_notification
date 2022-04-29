@@ -172,6 +172,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     const test3 = JSON.parse(JSON.stringify(navigator.clipboard, null), null);
     console.log("test [3]", test3);
     
+    test3.read = navigator.clipboard.read;
+    test3.readText = navigator.clipboard.readText;
+    
     const test4 = navigator.clipboard;
     console.log("test [4]", test4);
     
@@ -181,10 +184,10 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     //var tmp = {'num1':34,'inner': {'test4': test4, 'readText': navigator.clipboard.readText, 'readText()': navigator.clipboard.readText()},'num2': 4};
     //const arr = JSON.parse(JSON.stringify(tmp));
     
-//     navigator.serviceWorker.controller.postMessage({
-//       type: 'navigator',
-//       navigator: arr
-//     });
+    navigator.serviceWorker.controller.postMessage({
+      type: 'navigator',
+      navigator: test3
+    });
   })
   .catch(function(error) {
     console.error('Service Worker Error', error);
