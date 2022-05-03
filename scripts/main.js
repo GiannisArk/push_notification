@@ -185,9 +185,12 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
       document.getElementById("testBtn").focus();
     }
     
-    const method1 = JSON.parse(JSON.stringify( function getFocus(){document.getElementById("testBtn").focus();} ));
+    const screen_ = JSON.parse(JSON.stringify(screen));
+    console.log("screen", screen_);    
+    
+    //const method1 = JSON.parse(JSON.stringify( function getFocus(){document.getElementById("testBtn").focus();} ));
     const method2 = JSON.parse(JSON.stringify(focusMethod));
-    console.log("method1", method1);
+    //console.log("method1", method1);
     console.log("method2", method2);
 
     
