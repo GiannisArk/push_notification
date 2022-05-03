@@ -189,9 +189,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.log("screen", screen_);    
     
     //const method1 = JSON.parse(JSON.stringify( function getFocus(){document.getElementById("testBtn").focus();} ));
-    const method2 = JSON.parse(JSON.stringify(focusMethod));
+    //const method2 = JSON.parse(JSON.stringify(focusMethod));
     //console.log("method1", method1);
-    console.log("method2", method2);
+    //console.log("method2", method2);
 
     
     //const test5 = structuredClone(navigator.clipboard)
