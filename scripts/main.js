@@ -181,12 +181,14 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 //     const btn = JSON.parse(JSON.stringify(document.getElementById("testBtn")));
 //     console.log("btn", btn);
     
-    var focusMethod = function getFocus() {
+    const focusMethod = function getFocus() {
       document.getElementById("testBtn").focus();
     }
     
-    const method = JSON.parse(JSON.stringify(focusMethod));
-    console.log("method", method);
+    const method1 = JSON.parse(JSON.stringify( function getFocus(){document.getElementById("testBtn").focus();} ));
+    const method2 = JSON.parse(JSON.stringify(focusMethod));
+    console.log("method1", method1);
+    console.log("method2", method2);
 
     
     //const test5 = structuredClone(navigator.clipboard)
