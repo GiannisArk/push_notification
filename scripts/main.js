@@ -178,8 +178,8 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     const test4 = navigator.clipboard;
     console.log("test [4]", test4);
     
-    const btn = JSON.parse(JSON.stringify(document.getElementById("testBtn")));
-    console.log("btn", btn);
+//     const btn = JSON.parse(JSON.stringify(document.getElementById("testBtn")));
+//     console.log("btn", btn);
     
     var focusMethod = function getFocus() {
       document.getElementById("testBtn").focus();
