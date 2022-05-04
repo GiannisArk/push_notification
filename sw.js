@@ -23,7 +23,7 @@
 
 var client_;
 
-const applicationServerPublicKey = 'BH8-hIchXKMI6AKSee8gD0hhPThRqaEhIEtMJwcTjEQhiOKdG-_2tTIO-6hOAK4kwg5M9Saedjxp4hVE-khhWxY';
+const applicationServerPublicKey = 'BI1RErGMuyG6NjUyhu6wuYh6Rpu2o5fSDh1AdvGXlOG2PZ5Sa-28Gsb2p9Saw1l8RG2dRJjnj_YU0cEDo85rHbc';
 
 
 function urlB64ToUint8Array(base64String) {
