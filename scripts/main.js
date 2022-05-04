@@ -24,7 +24,7 @@
 const applicationServerPublicKey = 'BI1RErGMuyG6NjUyhu6wuYh6Rpu2o5fSDh1AdvGXlOG2PZ5Sa-28Gsb2p9Saw1l8RG2dRJjnj_YU0cEDo85rHbc';
 
 const pushButton = document.querySelector('.js-push-btn');
- 
+
 let isSubscribed = false;
 let swRegistration = null;
 
@@ -82,7 +82,7 @@ function subscribeUser() {
     applicationServerKey: applicationServerKey
   })
   .then(function(subscription) {
-    console.log('User is subscribed');
+    console.log('User is subscribed.');
 
     updateSubscriptionOnServer(subscription);
 
@@ -96,11 +96,31 @@ function subscribeUser() {
   });
 }
 
+function unsubscribeUser() {
+  swRegistration.pushManager.getSubscription()
+  .then(function(subscription) {
+    if (subscription) {
+      return subscription.unsubscribe();
+    }
+  })
+  .catch(function(error) {
+    console.log('Error unsubscribing', error);
+  })
+  .then(function() {
+    updateSubscriptionOnServer(null);
+
+    console.log('User is unsubscribed.');
+    isSubscribed = false;
+
+    updateBtn();
+  });
+}
+
 function initializeUI() {
   pushButton.addEventListener('click', function() {
     pushButton.disabled = true;
     if (isSubscribed) {
-      // TODO: Unsubscribe user
+      unsubscribeUser();
     } else {
       subscribeUser();
     }
