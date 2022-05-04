@@ -116,6 +116,7 @@ self.addEventListener('fetch', async function(event) {
 // });
 
 self.addEventListener('activate', event => {
+  cosole.log('[activate]'); 
   event.waitUntil(clients.claim());
 });
 
